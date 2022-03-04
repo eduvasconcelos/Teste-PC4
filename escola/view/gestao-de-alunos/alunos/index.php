@@ -111,7 +111,7 @@ $data = listaAlunos($conexao);
                     </thead>
                     <tbody class="align-middle">
                         <?php foreach($data as $row): ?>
-                            <tr>
+                        <tr>
                             <td>
                                 <a href="editar-aluno.php?id=<?php echo ($row['id']);?>" role="button" class="btn btn-sm">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 8 8">
@@ -134,8 +134,9 @@ $data = listaAlunos($conexao);
                                     }else {
                                         echo 'Erro';
                                     }
-                                ?></td>
-                            </tr>
+                                ?>
+                            </td>
+                        </tr>
                         <?php endforeach; ?>
                     </tbody>
                     </table>

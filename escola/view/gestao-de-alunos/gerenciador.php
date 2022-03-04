@@ -1,7 +1,11 @@
 <?php
 require_once "../../model/conexao.php";
-require_once "../../model/teste/exibir.php";
-$data = listaTeste($conexao);
+require_once "../../model/aluno/exibir-aluno.php";
+require_once "../../model/professor/exibir-professor.php";
+require_once "../../model/disciplina/exibir-disciplina.php";
+$data_aluno = listaAlunos($conexao);
+$data_professor = listaProfessores($conexao);
+$data_disciplina = listaDisciplinas($conexao);
 
 //var_dump($data);
 //die;
@@ -112,21 +116,32 @@ $data = listaTeste($conexao);
                             </tr>
                         </thead>
                         <tbody class="align-middle">
-                            <?php foreach($data as $row): ?>
+                            <?php foreach($data_aluno as $row): ?>
                                 <tr>
                                     <td>
-                                        <a href="../professores/editar-professor.php?id=<?php echo ($row['id']);?>" role="button" class="btn btn-sm">
+                                        <a href="alunos/editar-aluno.php?id=<?php echo ($row['id']);?>" role="button" class="btn btn-sm">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 8 8">
                                                 <path d="M6 0l-1 1 2 2 1-1-2-2zm-2 2l-4 4v2h2l4-4-2-2z" />
                                             </svg>
                                         </a>
                                     </td>
-                                    <td>123456</td>
+                                    <td><?php echo $row['matricula_aluno']; ?></td>
                                     <td><?php echo $row['nome']; ?></td>
                                     <td><?php echo $row['email']; ?></td>
-                                    <td>(85) 98803-6365</td>
-                                    <td>22/04/2004</td>
-                                    <td>M</td>
+                                    <td><?php echo $row['telefone']; ?></td>
+                                    <td><?php echo $row['data_nascimento']; ?></td>
+                                    <td><?php 
+                                            if ($row['sexo'] == 1){
+                                                echo 'Masculino';
+                                            }else if ($row['sexo'] == 2){
+                                                echo 'Feminino';
+                                            }else if ($row['sexo'] == 3){
+                                                echo 'Outro';
+                                            }else {
+                                                echo 'Erro';
+                                            }
+                                        ?>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -137,24 +152,42 @@ $data = listaTeste($conexao);
                     <table class="table table-striped table-sm">
                         <thead>
                             <tr>
+                            <th scope="col"></th>
                             <th scope="col">Matrícula</th>
-                            <th scope="col">Aluno</th>
+                            <th scope="col">Professor</th>
                             <th scope="col">Email</th>
                             <th scope="col">Telefone</th>
                             <th scope="col">Data de nascimento</th>
                             <th scope="col">Gênero</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php foreach($data as $row): ?>
-                                <tr>
-                                <td>123456</td>
+                        <tbody class="align-middle">
+                            <?php foreach($data_professor as $row): ?>
+                            <tr>
+                                <td>
+                                    <a href="professores/editar-professor.php?id=<?php echo ($row['id']);?>" role="button" class="btn btn-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 8 8">
+                                            <path d="M6 0l-1 1 2 2 1-1-2-2zm-2 2l-4 4v2h2l4-4-2-2z" />
+                                        </svg>
+                                    </a>
+                                </td>
+                                <td><?php echo $row['matricula_professor']; ?></td>
                                 <td><?php echo $row['nome']; ?></td>
                                 <td><?php echo $row['email']; ?></td>
-                                <td>(85) 98803-6365</td>
-                                <td>22/04/2004</td>
-                                <td>M</td>
-                                </tr>
+                                <td><?php echo $row['telefone']; ?></td>
+                                <td><?php echo $row['data_nascimento']; ?></td>
+                                <td><?php 
+                                        if ($row['sexo'] == 1){
+                                            echo 'Masculino';
+                                        }else if ($row['sexo'] == 2){
+                                            echo 'Feminino';
+                                        }else if ($row['sexo'] == 3){
+                                            echo 'Outro';
+                                        }else {
+                                            echo 'Erro';
+                                        }?>
+                                </td>
+                            </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
@@ -164,24 +197,30 @@ $data = listaTeste($conexao);
                     <table class="table table-striped table-sm">
                         <thead>
                             <tr>
-                            <th scope="col">Matrícula</th>
-                            <th scope="col">Aluno</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Telefone</th>
-                            <th scope="col">Data de nascimento</th>
-                            <th scope="col">Gênero</th>
+                                <th scope="col"></th>
+                                <th scope="col">Disciplina</th>
+                                <th scope="col">Descrição</th>
+                                <th scope="col" ></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php foreach($data as $row): ?>
-                                <tr>
-                                <td>123456</td>
+                        <tbody class="align-middle">
+                            <?php foreach($data_disciplina as $row): ?>
+                            <tr>
+                                <td>
+                                    <a href="disciplinas/editar-disciplina.php?id=<?php echo ($row['id']);?>" role="button" class="btn btn-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 8 8">
+                                            <path d="M6 0l-1 1 2 2 1-1-2-2zm-2 2l-4 4v2h2l4-4-2-2z" />
+                                        </svg>
+                                    </a>
+                                </td>
                                 <td><?php echo $row['nome']; ?></td>
-                                <td><?php echo $row['email']; ?></td>
-                                <td>(85) 98803-6365</td>
-                                <td>22/04/2004</td>
-                                <td>M</td>
-                                </tr>
+                                <td><div class="w-75"><?php echo $row['descricao']; ?></div></td>
+                                <td>
+                                    <div class="d-flex flex-row-reverse">
+                                        <a href="disciplinas/disciplina.php?id=<?php echo ($row['id']);?>" role='button' class='btn btn-outline-danger btn-sm'>Abrir disciplina</a>
+                                    </div>
+                                </td>
+                            </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>

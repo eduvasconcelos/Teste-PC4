@@ -126,7 +126,11 @@ $data = listaDisciplinas($conexao);
                                     </td>
                                     <td><?php echo $row['nome']; ?></td>
                                     <td><div class="w-75"><?php echo $row['descricao']; ?></div></td>
-                                    <td><a href="disciplina.php?id=<?php echo ($row['id']);?>" role='button' class='btn btn-outline-danger btn-sm'>Abrir disciplina</a></td>
+                                    <td>
+                                        <div class="d-flex flex-row-reverse">
+                                            <a href="disciplina.php?id=<?php echo ($row['id']);?>" role='button' class='btn btn-outline-danger btn-sm'>Abrir disciplina</a>
+                                        </div>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
