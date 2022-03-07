@@ -1,7 +1,3 @@
-<?php
-require_once "../../model/conexao.php";
-require_once "../../model/exibir.php";
-?>
 <!DOCTYPE html>
 <html lang="pt-br" class="h-100">
 <head>
